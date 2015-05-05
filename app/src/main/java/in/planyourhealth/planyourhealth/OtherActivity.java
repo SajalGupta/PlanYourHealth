@@ -2,15 +2,18 @@ package in.planyourhealth.planyourhealth;
 
 import android.os.Bundle;
 import android.app.Activity;
+
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 import java.util.HashMap;
 
 public class OtherActivity extends Activity {
     SessionManagement session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,13 @@ public class OtherActivity extends Activity {
 
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        session.checkLogin();
+        super.onResume();
+    }
+
 
 
 }
