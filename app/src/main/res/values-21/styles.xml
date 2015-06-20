@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:colorPrimary" tools:ignore="NewApi">@color/primaryColor</item>
+        <item name="android:colorPrimaryDark" tools:ignore="NewApi">@color/primaryColorDark</item>
+        <item name="android:colorAccent" tools:ignore="NewApi">@color/accentColor</item>
+        <item name="windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
+
+    </style>
+</resources>

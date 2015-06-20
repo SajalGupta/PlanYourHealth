@@ -14,5 +14,8 @@
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
-
+    <color name="primaryColor">#607D8B</color>
+    <color name="primaryColorDark">#455A64</color>
+    <color name="profileRelativeBackground">#504136</color>
+    <color name="accentColor">#2E303C</color>
 </resources>

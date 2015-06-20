@@ -224,6 +224,7 @@ public class Login extends Activity implements OnClickListener{
             super.onBackPressed();
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
+            finish();
             System.exit(1);
             return;
         }

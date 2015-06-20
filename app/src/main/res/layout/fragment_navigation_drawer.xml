@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+
+    tools:context="in.planyourhealth.planyourhealth.NavigationDrawerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:id="@+id/drawerRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/profileImageRelative"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/profileRelativeBackground"
+            android:paddingBottom="16dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="39dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:id="@+id/profile_image"
+                android:layout_width="86dp"
+                android:layout_height="86dp"
+
+
+                android:src="@drawable/logo_1_" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileImageRelative">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/drawerList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+            <ListView
+                android:layout_below="@id/drawerList"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:id="@+id/ListViewDrawer"
+                android:entries="@array/mArray"
+                android:background="#ff2a2a2a"
+                 />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>
