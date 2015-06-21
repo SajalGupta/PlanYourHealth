@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:animateLayoutChanges="true">
+
+    <ImageView
+        android:id="@+id/listIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:padding="8dp"
+        android:src="@drawable/logo_1_" />
+
+    <TextView
+
+        android:id="@+id/listText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@+id/listIcon"
+        android:layout_toRightOf="@+id/listIcon"
+        android:padding="8dp"
+        android:text="Dummy"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/invisText"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listText"
+        android:layout_toEndOf="@+id/listIcon"
+        android:layout_toRightOf="@+id/listIcon"
+        android:padding="8dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/invisTextOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/invisText"
+        android:layout_toEndOf="@+id/listIcon"
+        android:layout_toRightOf="@+id/listIcon"
+        android:padding="8dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/invisTextTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/invisTextOne"
+        android:layout_toEndOf="@+id/listIcon"
+        android:layout_toRightOf="@+id/listIcon"
+        android:padding="8dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/invisTextThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/invisTextTwo"
+        android:layout_toEndOf="@+id/listIcon"
+        android:layout_toRightOf="@+id/listIcon"
+        android:padding="8dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -13,6 +13,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +63,7 @@ public class OtherActivity extends ActionBarActivity {
 
         // name
         String email = user.get(SessionManagement.KEY_EMAIL);
-        TextView userEmail = (TextView) findViewById(R.id.userEmail);
+        /*TextView userEmail = (TextView) findViewById(R.id.userEmail);
         userEmail.setText(email);
         Button btnLogout = (Button) findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +71,7 @@ public class OtherActivity extends ActionBarActivity {
             public void onClick(View v) {
                 session.logoutUser();
             }
-        });
+        }); */
 
         //Getting ToolBar
         toolbar = (Toolbar)(findViewById(R.id.app_bar));
@@ -91,29 +93,24 @@ public class OtherActivity extends ActionBarActivity {
         // Loading products in Background Thread
         new LoadAllProducts().execute();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_other, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+         super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+            case R.id.logoutMenuText:
+                session.logoutUser();
+                break;
+        }
         return true;
     }
 
