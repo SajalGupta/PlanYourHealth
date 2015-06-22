@@ -16,11 +16,17 @@ class Globals {
     }
     public static Context context;
     public static boolean[] mClicked={false,false,false,false,false,false,false};
-
+    public static int cartFilled=0;
     public static void setListOfEmails(String[] listOfEmails) {
         Globals.listOfEmails = listOfEmails;
     }
+    public static ProductCart[] cart = new ProductCart[50];
 
+    public static ProductCart[] getCart() {
+        return cart;
+    }
 
-
+    public static void setCart(ProductCart[] cart) {
+        Globals.cart = cart;
+    }
 }

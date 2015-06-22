@@ -1,13 +1,17 @@
 package in.planyourhealth.planyourhealth;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,12 +20,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.apache.http.NameValuePair;
@@ -42,6 +48,7 @@ public class OtherActivity extends ActionBarActivity {
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_TYPE = "product_type";
     private static final String TAG_NAME = "product_name";
+    public static float totalPrice = 0;
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -52,7 +59,7 @@ public class OtherActivity extends ActionBarActivity {
     ArrayList<HashMap<String, String>> productsList;
     // products JSONArray
     JSONArray products = null;
-
+    TextView infoText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +82,10 @@ public class OtherActivity extends ActionBarActivity {
 
         //Getting ToolBar
         toolbar = (Toolbar)(findViewById(R.id.app_bar));
+        infoText = (TextView) findViewById(R.id.info_text);
         setSupportActionBar(toolbar);
         Globals.context = getApplicationContext();
-
+        registerReceiver(receiver,new IntentFilter(FilterAdapter.BROADCAST_ACTION));
         //Drawer Object
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navDrawer);
         //Drawer SetUp
@@ -93,6 +101,14 @@ public class OtherActivity extends ActionBarActivity {
         // Loading products in Background Thread
         new LoadAllProducts().execute();
 
+        CardView cardView = (CardView)findViewById(R.id.card_view);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(OtherActivity.this,CartActivity.class);
+                startActivity(i);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,8 +222,19 @@ public class OtherActivity extends ActionBarActivity {
                             new int[] { R.id.pid, R.id.name }); */
                     final FilterAdapter mAdapter = new FilterAdapter(OtherActivity.this,productsList);
                     // updating listview
-                    ListView productsListView = (ListView) findViewById(R.id.productsListView);
+                    final ListView productsListView = (ListView) findViewById(R.id.productsListView);
                     productsListView.setAdapter(mAdapter);
+                    productsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i = new Intent(OtherActivity.this,ProductDescriptionActivity.class);
+                            Log.i("ItemName",productsList.get(position).get(TAG_NAME));
+                            Log.i("ItemType",productsList.get(position).get(TAG_TYPE));
+                            i.putExtra("productName",productsList.get(position).get(TAG_NAME));
+                            i.putExtra("productType",productsList.get(position).get(TAG_TYPE));
+                            startActivity(i);
+                        }
+                    });
                     final EditText editSearch = (EditText) findViewById(R.id.search);
                     editSearch.addTextChangedListener(new TextWatcher() {
                         @Override
@@ -229,7 +256,34 @@ public class OtherActivity extends ActionBarActivity {
                 }
             });
 
+
         }
 
+    }
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i("Broadcast","recvd");
+            for(int i=0;i<Globals.cartFilled;i++){
+                totalPrice = totalPrice + Globals.cart[i].getProductPrice();
+            }
+            infoText.setText("Total Items : "+ Globals.cartFilled+" Total Price : "+totalPrice  );
+
+
+        }
+    };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
+
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        registerReceiver(receiver,new IntentFilter(FilterAdapter.BROADCAST_ACTION));
     }
 }

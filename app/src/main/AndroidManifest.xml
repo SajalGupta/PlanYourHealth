@@ -28,6 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".OtherActivity$ReceiveBroadcast"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="in.planyourhealth.planyourhealth" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" >
@@ -35,6 +45,19 @@
         <activity
             android:name=".reportActivity"
             android:label="@string/title_activity_report" >
+        </activity>
+        <activity
+            android:name=".ProductDescriptionActivity"
+            android:label="@string/title_activity_product_description"
+            android:parentActivityName=".OtherActivity" >
+        </activity>
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/title_activity_cart"
+            android:parentActivityName=".OtherActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.planyourhealth.planyourhealth.OtherActivity" />
         </activity>
     </application>
 
